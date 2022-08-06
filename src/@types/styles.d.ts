@@ -2,7 +2,7 @@
 // Arquivo necessário para identificar os tipos de cores pelo Typescript //
 
 import 'styled-components'
-import { defaultTheme } from '../styles/themes/default'
+import { defaultTheme } from '../styles/themes/light'
 
 export type ThemeType = typeof defaultTheme
 

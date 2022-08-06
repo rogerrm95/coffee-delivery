@@ -14,8 +14,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: ${(props) => props.theme['brown-100']};
-        color: ${(props) => props.theme['brown-700']}
+        background: ${(props) => props.theme.colors['brown-100']};
+        color: ${(props) => props.theme.colors['brown-700']}
     }
 
     button {
@@ -29,6 +29,6 @@ export const GlobalStyles = createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow: 0 0 0 2px ${(props) => props.theme.yellow} ;
+        box-shadow: 0 0 0 2px ${(props) => props.theme.colors.yellow} ;
     }
 `
