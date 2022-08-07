@@ -29,6 +29,23 @@ export const GlobalStyles = createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow: 0 0 0 2px ${(props) => props.theme.colors.yellow} ;
+        box-shadow: 0 0 0 2px ${(props) => props.theme.colors.purple};
+    }
+
+    ul {
+        list-style: none ;
+    }
+
+    // Remove arrow from input type number //
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
     }
 `
