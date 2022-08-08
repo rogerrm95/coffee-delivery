@@ -1,14 +1,6 @@
 // Images //
-import {
-  Coffee,
-  Minus,
-  Package,
-  Plus,
-  ShoppingCart,
-  Timer,
-} from 'phosphor-react'
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import HeroImage from '../../assets/hero-image.png'
-import TradicionalExpressCoffee from '../../assets/coffees/traditional-espresso.png'
 // Components //
 import { Header } from '../../components/Header'
 // Styles //
@@ -19,15 +11,15 @@ import {
   BadgeTimer,
   HomeContainer,
   LandingContainer,
-  ProductItem,
   StoreContainer,
 } from './styles'
+import { ProductList } from '../../components/ProductItem'
 
 export function Home() {
   return (
     <HomeContainer>
       <Header />
-
+      {/* Página Inicial */}
       <LandingContainer>
         <img
           src={HeroImage}
@@ -68,51 +60,10 @@ export function Home() {
         </section>
       </LandingContainer>
 
+      {/* Lista dos produtos */}
       <StoreContainer>
         <h2>Nossos cafés</h2>
-
-        <ul>
-          <ProductItem>
-            <img
-              src={TradicionalExpressCoffee}
-              alt="café expresso tradicioanal"
-            />
-
-            <div className="badge-features">
-              <span>TRADICIONAL</span>
-              <span>GELADO</span>
-            </div>
-
-            <p className="name">Expresso Tradicional</p>
-
-            <span className="description">
-              O tradicional café feito com água quente e grãos moídos
-            </span>
-
-            <footer>
-              <span>
-                R$
-                <strong>9,90</strong>
-              </span>
-
-              <div className="actions">
-                <div className="input-count">
-                  <button>
-                    <Minus size={14} weight="bold" />
-                  </button>
-                  <input type="number" id="amount" value={1} />
-                  <button>
-                    <Plus size={14} weight="bold" />
-                  </button>
-                </div>
-
-                <button className="buy-button">
-                  <ShoppingCart size={22} weight="fill" />
-                </button>
-              </div>
-            </footer>
-          </ProductItem>
-        </ul>
+        <ProductList />
       </StoreContainer>
     </HomeContainer>
   )
