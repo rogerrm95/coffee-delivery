@@ -3,15 +3,12 @@ import { coffeesList } from '../../utils/coffeeList'
 // Images //
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import HeroImage from '../../assets/hero-image.png'
-// Components //
-import { Header } from '../../components/Header'
 // Styles //
 import {
   BadgeCart,
   BadgeCoffee,
   BadgePackage,
   BadgeTimer,
-  HomeContainer,
   LandingContainer,
   StoreContainer,
 } from './styles'
@@ -47,8 +44,7 @@ export function Home() {
     setCoffees(formattedCoffeeList)
   }, [])
   return (
-    <HomeContainer>
-      <Header />
+    <>
       {/* Página Inicial */}
       <LandingContainer>
         <img
@@ -100,6 +96,6 @@ export function Home() {
           ))}
         </ul>
       </StoreContainer>
-    </HomeContainer>
+    </>
   )
 }

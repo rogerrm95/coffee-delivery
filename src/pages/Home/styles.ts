@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.div`
-  background: ${(props) => props.theme.colors['brown-100']};
-
-  display: flex;
-  flex-direction: column;
-  max-width: 1152px;
-  margin: auto;
-  padding: 0 1rem;
-`
 // Landing Page //
 export const LandingContainer = styled.main`
   display: flex;
