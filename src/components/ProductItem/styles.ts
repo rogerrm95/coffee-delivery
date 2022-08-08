@@ -1,14 +1,7 @@
 import styled from 'styled-components'
 
-export const ListContainer = styled.ul`
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 2.5rem 2rem;
-`
-
 // Item - Component //
-export const ProductItem = styled.li`
+export const ProductItemContainer = styled.li`
   width: 256px;
   height: 310px;
 

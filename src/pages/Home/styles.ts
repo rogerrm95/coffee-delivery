@@ -141,4 +141,13 @@ export const StoreContainer = styled.section`
     font-weight: 800;
     font-size: 2rem;
   }
+
+  ul {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2.5rem 2rem;
+
+    padding-bottom: 2rem;
+  }
 `
