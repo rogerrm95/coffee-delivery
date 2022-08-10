@@ -2,17 +2,19 @@ import { InputHTMLAttributes } from 'react'
 import { InputContainer } from './styles'
 
 interface InputDefaultProps extends InputHTMLAttributes<HTMLInputElement> {
-  isOptional?: boolean
+  hasOptionalLabel?: boolean
+  gridArea?: string
 }
 
 export function InputDefault({
-  isOptional = false,
+  hasOptionalLabel = false,
+  gridArea,
   ...rest
 }: InputDefaultProps) {
   return (
-    <InputContainer>
+    <InputContainer id={`${gridArea && gridArea}`}>
       <input {...rest} />
-      {isOptional && (
+      {hasOptionalLabel && (
         <span>
           <i>Opcional</i>
         </span>
