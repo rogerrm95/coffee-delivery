@@ -15,7 +15,10 @@ import {
   HeaderFormAddress,
   HeaderPayment,
   PaymentMethodButtons,
+  CoffeSeleted,
 } from './styles'
+
+import { coffeesList } from '../../utils/coffeeList'
 
 export function Checkout() {
   return (
@@ -91,13 +94,21 @@ export function Checkout() {
 
         <div className="purchase-details">
           <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
+            <CoffeSeleted>...</CoffeSeleted>
           </ul>
 
           <div>
-            
+            <span>Total de itens</span> <span>R$ 29,70</span>
+            <span>Entrega</span> <span>R$ 3,50</span>
+            <span>
+              <strong>Total</strong>
+            </span>
+            <span>
+              <strong>R$ 33,20</strong>
+            </span>
           </div>
+
+          <button>Confirmar pedido</button>
         </div>
       </CartStorage>
     </CheckoutContainer>
