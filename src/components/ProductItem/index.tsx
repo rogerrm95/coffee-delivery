@@ -1,5 +1,6 @@
-// Utils //
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { ShoppingCart } from 'phosphor-react'
+// Components //
+import { InputCount } from '../Inputs/InputCount'
 // Styles //
 import { ProductItemContainer } from './styles'
 
@@ -40,15 +41,7 @@ export function ProductItem({ product }: ProductItemProps) {
         </span>
 
         <div className="actions">
-          <div className="input-count">
-            <button>
-              <Minus size={14} weight="bold" />
-            </button>
-            <input type="number" id="amount" value={1} />
-            <button>
-              <Plus size={14} weight="bold" />
-            </button>
-          </div>
+          <InputCount />
 
           <button className="buy-button">
             <ShoppingCart size={22} weight="fill" />
