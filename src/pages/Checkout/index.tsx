@@ -4,29 +4,30 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
-  Trash,
 } from 'phosphor-react'
 import { InputDefault } from '../../components/Inputs/InputDefault/indext'
 // Styles //
 import {
   CartStorage,
-  CheckoutContainer,
+  Container,
   UserInfo,
   FormAddress,
   HeaderFormAddress,
   HeaderPayment,
   PaymentMethodButtons,
-  CoffeSeletedItem,
 } from './styles'
 
-import { coffeesList } from '../../utils/coffeeList'
-import { InputCount } from '../../components/Inputs/InputCount'
+// import { coffeesList } from '../../utils/coffeeList'
+import { ProductsSelectedList } from './components/ProductsSelectedList'
 
 export function Checkout() {
   return (
-    <CheckoutContainer>
+    <Container>
+      {/* Dados do cliente */}
       <UserInfo>
         <h2>Complete seu Pedido</h2>
+
+        {/* Endereço do cliente */}
         <div className="user-address">
           <HeaderFormAddress>
             <MapPinLine size={22} weight="regular" />
@@ -60,6 +61,7 @@ export function Checkout() {
           </FormAddress>
         </div>
 
+        {/* Método de pagamento */}
         <div className="user-payment">
           <HeaderPayment>
             <CurrencyDollar size={22} weight="regular" />
@@ -91,51 +93,12 @@ export function Checkout() {
         </div>
       </UserInfo>
 
+      {/* Lista de produtos no carrinho */}
       <CartStorage>
         <h2>Cafés selecionados</h2>
 
         <div className="purchase-details">
-          <ul>
-            <CoffeSeletedItem>
-              <div className="info">
-                <img src={coffeesList[0].image} alt={coffeesList[0].name} />
-
-                <div className="details">
-                  <span>{coffeesList[0].name}</span>
-
-                  <div className="actions">
-                    <InputCount />
-                    <button className="remove-button">
-                      <Trash size={16} />
-                      Remover
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="cost">R$ 19,00</div>
-            </CoffeSeletedItem>
-
-            <CoffeSeletedItem>
-              <div className="info">
-                <img src={coffeesList[1].image} alt={coffeesList[0].name} />
-
-                <div className="details">
-                  <span>{coffeesList[1].name}</span>
-
-                  <div className="actions">
-                    <InputCount />
-                    <button className="remove-button">
-                      <Trash size={16} />
-                      Remover
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="cost">R$ 19,00</div>
-            </CoffeSeletedItem>
-          </ul>
+          <ProductsSelectedList />
 
           <div>
             <span>Total de itens</span> <span>R$ 29,70</span>
@@ -151,6 +114,6 @@ export function Checkout() {
           <button>Confirmar pedido</button>
         </div>
       </CartStorage>
-    </CheckoutContainer>
+    </Container>
   )
 }
