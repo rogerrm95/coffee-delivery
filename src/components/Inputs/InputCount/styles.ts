@@ -4,8 +4,11 @@ export const InputCountContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 0.5rem;
-  gap: 0.25rem;
+  padding: 8px;
+  gap: 4px;
+
+  width: 72px;
+  height: 32px;
 
   background: ${(props) => props.theme.colors['brown-300']};
   border-radius: 8px;

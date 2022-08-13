@@ -4,6 +4,7 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  Trash,
 } from 'phosphor-react'
 import { InputDefault } from '../../components/Inputs/InputDefault/indext'
 // Styles //
@@ -15,10 +16,11 @@ import {
   HeaderFormAddress,
   HeaderPayment,
   PaymentMethodButtons,
-  CoffeSeleted,
+  CoffeSeletedItem,
 } from './styles'
 
 import { coffeesList } from '../../utils/coffeeList'
+import { InputCount } from '../../components/Inputs/InputCount'
 
 export function Checkout() {
   return (
@@ -94,7 +96,45 @@ export function Checkout() {
 
         <div className="purchase-details">
           <ul>
-            <CoffeSeleted>...</CoffeSeleted>
+            <CoffeSeletedItem>
+              <div className="info">
+                <img src={coffeesList[0].image} alt={coffeesList[0].name} />
+
+                <div className="details">
+                  <span>{coffeesList[0].name}</span>
+
+                  <div className="actions">
+                    <InputCount />
+                    <button className="remove-button">
+                      <Trash size={16} />
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="cost">R$ 19,00</div>
+            </CoffeSeletedItem>
+
+            <CoffeSeletedItem>
+              <div className="info">
+                <img src={coffeesList[1].image} alt={coffeesList[0].name} />
+
+                <div className="details">
+                  <span>{coffeesList[1].name}</span>
+
+                  <div className="actions">
+                    <InputCount />
+                    <button className="remove-button">
+                      <Trash size={16} />
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="cost">R$ 19,00</div>
+            </CoffeSeletedItem>
           </ul>
 
           <div>

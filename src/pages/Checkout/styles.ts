@@ -197,10 +197,12 @@ export const PaymentMethodButtons = styled.div`
 // Carrinho de compras //
 export const CartStorage = styled.section`
   width: 100%;
+  max-width: 40rem;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.75rem;
 
   .purchase-details {
     width: 100%;
@@ -210,11 +212,11 @@ export const CartStorage = styled.section`
     flex-direction: column;
     justify-content: space-between;
 
-    border-radius: 6px;
+    border-radius: 6px 44px;
     background: ${(props) => props.theme.colors['brown-200']};
 
     // Preços //
-    div {
+    > div {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(3, 1fr);
@@ -225,6 +227,10 @@ export const CartStorage = styled.section`
         text-align: right;
       }
 
+      & span:nth-child(odd) {
+        font-size: 0.875rem;
+      }
+
       & span strong {
         font-weight: 700;
         font-size: 1.25rem;
@@ -233,7 +239,7 @@ export const CartStorage = styled.section`
     }
 
     // Confirmar pedido //
-    button {
+    > button {
       margin-top: 1.5rem;
       padding: 0.75rem 0.5rem;
 
@@ -266,13 +272,65 @@ export const CartStorage = styled.section`
     }
   }
 `
-// CONTINUAR ... //
-export const CoffeSeleted = styled.li`
-  display: flex;
-  gap: 1.25rem;
 
-  img {
-    width: 4rem;
-    height: auto;
+export const CoffeSeletedItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  position: relative;
+
+  .info {
+    display: flex;
+    gap: 1.25rem;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .remove-button {
+    padding: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border-radius: 6px;
+
+    background: ${(props) => props.theme.colors['brown-300']};
+    color: ${(props) => props.theme.colors.purple};
+
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: ${(props) => props.theme.colors['brown-500']};
+    }
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: ${(props) => props.theme.colors['brown-400']};
+
+    position: absolute;
+    bottom: 0;
+    margin: -1.5rem 0;
   }
 `
