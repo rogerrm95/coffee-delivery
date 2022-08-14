@@ -136,6 +136,7 @@ export const StoreContainer = styled.section`
   ul {
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2.5rem 2rem;
 
