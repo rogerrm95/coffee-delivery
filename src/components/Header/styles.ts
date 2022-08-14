@@ -17,6 +17,7 @@ export const HeaderContainer = styled.header`
   img {
     width: 80px;
     height: 40px;
+    cursor: pointer;
   }
 
   div {
@@ -66,7 +67,7 @@ export const CartButton = styled.button`
 
     position: absolute;
     top: 24px;
-    right: 8px;
+    right: -8px;
     background: ${(props) => props.theme.colors['yellow-dark']};
     color: ${(props) => props.theme.colors.white};
 
