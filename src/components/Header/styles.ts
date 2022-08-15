@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   height: 104px;
@@ -44,7 +44,11 @@ export const LocationBadge = styled.span`
   }
 `
 
-export const CartButton = styled.button`
+interface CartButtonProps {
+  numberToItensAtShopCart: number
+}
+
+export const CartButton = styled.button<CartButtonProps>`
   padding: 0.5rem;
   border-radius: 6px;
 
@@ -60,10 +64,13 @@ export const CartButton = styled.button`
   transition: opacity 0.3s;
 
   &::after {
-    content: '3';
+    content: '${(props) => props.numberToItensAtShopCart}';
     width: 20px;
     height: 20px;
     border-radius: 50%;
+
+    display: ${(props) =>
+      props.numberToItensAtShopCart === 0 ? 'none' : 'flex'};
 
     position: absolute;
     top: 24px;
@@ -71,7 +78,6 @@ export const CartButton = styled.button`
     background: ${(props) => props.theme.colors['yellow-dark']};
     color: ${(props) => props.theme.colors.white};
 
-    display: flex;
     justify-content: center;
     align-items: center;
 

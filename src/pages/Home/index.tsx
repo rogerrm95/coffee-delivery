@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { coffeesList } from '../../utils/coffeeList'
 // Images //
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
@@ -14,35 +13,7 @@ import {
 } from './styles'
 import { ProductItem } from '../../components/ProductItem'
 
-interface CoffeeType {
-  id: number
-  name: string
-  description: string
-  price: number
-  priceFormatted: string
-  tags: string[]
-  image: string
-  isAvaliable?: boolean
-}
-
 export function Home() {
-  const [coffees, setCoffees] = useState<CoffeeType[]>([])
-
-  useEffect(() => {
-    const formattedCoffeeList = coffeesList.map((coffee) => {
-      return {
-        ...coffee,
-        priceFormatted: coffee.price
-          .toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL',
-          })
-          .replace('R$', ''),
-      }
-    })
-
-    setCoffees(formattedCoffeeList)
-  }, [])
   return (
     <>
       {/* Página Inicial */}
@@ -91,7 +62,7 @@ export function Home() {
         <h2>Nossos cafés</h2>
 
         <ul>
-          {coffees.map((coffee) => (
+          {coffeesList.map((coffee) => (
             <ProductItem key={coffee.id} product={coffee} />
           ))}
         </ul>

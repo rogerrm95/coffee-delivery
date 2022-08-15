@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../../hooks/useCart'
 // Icons & Images //
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import LogoCoffeeDelivery from '../../assets/logo.svg'
@@ -8,6 +9,7 @@ import { HeaderContainer, LocationBadge, CartButton } from './styles'
 
 export function Header() {
   const navigate = useNavigate()
+  const { cart } = useCart()
 
   return (
     <HeaderContainer>
@@ -22,7 +24,10 @@ export function Header() {
           Taboão da Serra, SP
         </LocationBadge>
 
-        <CartButton onClick={() => navigate('/checkout')}>
+        <CartButton
+          onClick={() => navigate('/checkout')}
+          numberToItensAtShopCart={cart.length}
+        >
           <ShoppingCart size={18} weight="fill" />
         </CartButton>
       </div>

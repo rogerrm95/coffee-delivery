@@ -1,32 +1,38 @@
 import { Trash } from 'phosphor-react'
-import { coffeesList } from '../../../../utils/coffeeList' // Temporário //
 // Components //
 import { InputCount } from '../../../../components/Inputs/InputCount'
 // Styles //
 import { Container } from './styles'
+import { useCart } from '../../../../hooks/useCart'
 
 export function ProductsSelectedList() {
+  const { cart } = useCart()
+
   return (
     <Container>
-      <li>
-        <div className="info">
-          <img src={coffeesList[0].image} alt={coffeesList[0].name} />
+      {cart &&
+        cart.map((item) => (
+          <li key={item.product.id}>
+            <div className="info">
+              <img src={item.product.image} alt={item.product.name} />
 
-          <div className="details">
-            <span>{coffeesList[0].name}</span>
+              <div className="details">
+                <span>{item.product.name}</span>
 
-            <div className="actions">
-              <InputCount />
-              <button className="remove-button">
-                <Trash size={16} />
-                Remover
-              </button>
+                <div className="actions">
+                  <InputCount />
+
+                  <button className="remove-button">
+                    <Trash size={16} />
+                    Remover
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="cost">R$ 19,00</div>
-      </li>
+            <div className="cost">R$ 19,00</div>
+          </li>
+        ))}
     </Container>
   )
 }

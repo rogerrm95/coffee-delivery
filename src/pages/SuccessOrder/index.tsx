@@ -2,7 +2,13 @@
 import { Timer, MapPin, CurrencyDollar } from 'phosphor-react'
 import HeroImage from '../../assets/success-illustration.svg'
 // Styles //
-import { BadgeAddress, BadgePayment, BadgeTime, BorderGradient, Container } from './styles'
+import {
+  BadgeAddress,
+  BadgePayment,
+  BadgeTime,
+  BorderGradient,
+  Container,
+} from './styles'
 
 export function SuccessOrder() {
   return (
