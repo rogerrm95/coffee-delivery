@@ -62,7 +62,7 @@ export const ProductItemContainer = styled.li`
 
     display: flex;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
 
     span {
       font-size: 0.75rem;
@@ -71,7 +71,6 @@ export const ProductItemContainer = styled.li`
 
     strong {
       font: 800 1.5rem 'Baloo 2', monospace;
-      margin-left: 0.25rem;
     }
   }
 
