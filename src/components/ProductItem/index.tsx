@@ -66,6 +66,7 @@ export function ProductItem({ product }: ProductItemProps) {
     }
 
     addProductToShopCart({ ...productItem }, count)
+    setCount(1)
   }
 
   return (
