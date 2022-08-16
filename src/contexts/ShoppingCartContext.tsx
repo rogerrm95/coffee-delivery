@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
-import { coffeesList } from '../utils/coffeeList'
+// hook //
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface ShoppingCartProviderProps {
   children: ReactNode
@@ -28,20 +29,37 @@ export const ShoppingCartContext = createContext<ShoppingCartContextData>(
 )
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [cart, setCart] = useState([] as FullCartList[])
-  // const cartJSON = localStorage.getItem('@coffee-delivery:shop-cart')
+  const { loadLocalStorage, saveToLocalStorage } = useLocalStorage()
 
-  // if (cartJSON) {
-  //   return JSON.parse(cartJSON)
-  // }
+  const [cart, setCart] = useState(() => {
+    const cartJSON = loadLocalStorage('@coffee-delivery:shop-cart')
 
-  // return []
+    if (!cartJSON) return [] as FullCartList[]
+
+    return cartJSON as FullCartList[]
+  })
 
   function addProductToShopCart(product: Product, count: number) {
-    const coffeeSelected = coffeesList.find((item) => item.id === product.id)
+    const hasProductIndex = cart.findIndex(
+      (item) => item.product.id === product.id,
+    )
 
-    if (coffeeSelected) {
-      setCart([...cart, { product: coffeeSelected, count }])
+    if (hasProductIndex < 0) {
+      const newList = [...cart, { product, count }]
+
+      setCart(newList)
+      saveToLocalStorage(newList, '@coffee-delivery:shop-cart')
+    } else {
+      const newList = cart.map((item) => {
+        if (item.product.id === product.id) {
+          return { ...item, count: count + item.count }
+        } else {
+          return item
+        }
+      })
+
+      setCart(newList)
+      saveToLocalStorage(newList, '@coffee-delivery:shop-cart')
     }
   }
 
