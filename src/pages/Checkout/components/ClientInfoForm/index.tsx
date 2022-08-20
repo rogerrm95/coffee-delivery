@@ -18,7 +18,6 @@ import {
   PaymentMethodButtons,
   UserInfo,
 } from './styles'
-import React from 'react'
 
 interface ClientInfoFormProps {
   paymentMethod: PaymentMethod | undefined

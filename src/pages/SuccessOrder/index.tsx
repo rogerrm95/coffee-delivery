@@ -1,6 +1,12 @@
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+// Utils //
+import { paymentMethodsList } from '../../utils/paymentMethodsList'
+// Types //
+import { CheckoutFormValues, PaymentMethod } from '../Checkout'
 // Images //
-import { Timer, MapPin, CurrencyDollar } from 'phosphor-react'
 import HeroImage from '../../assets/success-illustration.svg'
+import { Timer, MapPin, CurrencyDollar } from 'phosphor-react'
 // Styles //
 import {
   BadgeAddress,
@@ -10,7 +16,27 @@ import {
   Container,
 } from './styles'
 
+interface SuccessPageLocationState {
+  address: CheckoutFormValues
+  paymentMethod: PaymentMethod
+}
+
 export function SuccessOrder() {
+  const { state } = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [state])
+
+  if (!state) {
+    return null
+  }
+
+  const { address, paymentMethod } = state as SuccessPageLocationState
+
   return (
     <Container>
       <section>
@@ -22,9 +48,10 @@ export function SuccessOrder() {
             <BadgeAddress>
               <MapPin size={32} weight="bold" />
               <p>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>{`${address.street}, ${address.numberHouse} `}</strong>
                 <br />
-                Farrapos - Porto Alegre, RS
+                {`${address.district} - ${address.city}, ${address.uf}`}
               </p>
             </BadgeAddress>
 
@@ -41,14 +68,14 @@ export function SuccessOrder() {
               <CurrencyDollar size={32} weight="bold" />
               <p>
                 Pagamento na entrega <br />
-                <strong>Cartão de Crédito</strong>
+                <strong>{paymentMethodsList[paymentMethod]}</strong>
               </p>
             </BadgePayment>
           </div>
         </BorderGradient>
       </section>
 
-      <img src={HeroImage} alt="Motoqueiro com o pedido" />
+      <img src={HeroImage} alt="Entregador na moto com o pedido" />
     </Container>
   )
 }
