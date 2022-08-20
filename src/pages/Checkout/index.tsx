@@ -27,7 +27,7 @@ export type PaymentMethod = 'cash' | 'credit' | 'debit'
 // Page - Checkout //
 export function Checkout() {
   const navigate = useNavigate()
-  const { cart } = useCart()
+  const { cart, clearCart } = useCart()
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>()
 
   const methods = useForm<CheckoutFormValues>({
@@ -49,6 +49,7 @@ export function Checkout() {
     }
 
     reset()
+    clearCart()
 
     navigate('/success-order', {
       state: {
@@ -58,7 +59,7 @@ export function Checkout() {
     })
   }
 
-  // Altera o método de pagamento //
+  // Função responsável alterar o método de pagamento //
   function handleSelectedPaymentMethod(method: PaymentMethod) {
     setPaymentMethod(method)
   }

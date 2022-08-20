@@ -16,13 +16,13 @@ export function InputCount({
 }: InputCountProps) {
   return (
     <InputCountContainer>
-      <button onClick={onRemoveProductUnity}>
+      <button type="button" onClick={onRemoveProductUnity}>
         <Minus size={14} weight="bold" />
       </button>
 
       <input type="number" {...rest} />
 
-      <button onClick={onAddOneProductUnity}>
+      <button type="button" onClick={onAddOneProductUnity}>
         <Plus size={14} weight="bold" />
       </button>
     </InputCountContainer>

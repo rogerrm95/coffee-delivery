@@ -99,6 +99,7 @@ export function ProductsSelected({
             />
 
             <button
+              type="button"
               className="remove-button"
               onClick={() => handleDeleteProductAtTheCart(product.id)}
             >
