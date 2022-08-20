@@ -1,148 +1,80 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from 'phosphor-react'
-// Hooks //
-import { useCart } from '../../hooks/useCart'
+import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { FormProvider, useForm } from 'react-hook-form'
+import * as zod from 'zod'
+import { useNavigate } from 'react-router-dom'
 // Components //
-import { InputDefault } from '../../components/Inputs/InputDefault/indext'
-import { ProductsSelected } from './components/ProductsSelected'
+import { ClientInfoForm } from './components/ClientInfoForm'
+import { ShoppingCart } from './components/ShoppingCart'
 // Styles //
-import {
-  CartStorage,
-  Container,
-  UserInfo,
-  FormAddress,
-  HeaderFormAddress,
-  HeaderPayment,
-  PaymentMethodButtons,
-} from './styles'
-import { useEffect, useState } from 'react'
-import { formatToBRCashString } from '../../utils/formatCashString'
+import { Container, Form } from './styles'
+import { useCart } from '../../hooks/useCart'
 
+// Schema validation - ClientForm //
+const checkoutFormValidationSchema = zod.object({
+  cep: zod.string().max(8),
+  street: zod.string(),
+  numberHouse: zod.string(),
+  complement: zod.string().optional(),
+  district: zod.string(),
+  city: zod.string(),
+  uf: zod.string().min(2).max(2),
+})
+
+export type CheckoutFormValues = zod.infer<typeof checkoutFormValidationSchema>
+export type PaymentMethod = 'cash' | 'credit' | 'debit'
+
+// Page - Checkout //
 export function Checkout() {
+  const navigate = useNavigate()
   const { cart } = useCart()
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>()
 
-  const [sumTotalOfItens, setSumTotalOfItens] = useState(0)
+  const methods = useForm<CheckoutFormValues>({
+    resolver: zodResolver(checkoutFormValidationSchema),
+    mode: 'onSubmit',
+  })
+  const { handleSubmit, reset } = methods
 
-  useEffect(() => {
-    const total = cart.reduce((total, item) => {
-      return total + item.product.price * item.count
-    }, 0)
+  // Função responsável por realizar um pedido //
+  function handleCheckout(data: CheckoutFormValues) {
+    if (cart.length <= 0) {
+      alert('Necessário escolher algum produto')
+      return
+    }
 
-    setSumTotalOfItens(total)
-  }, [cart])
+    if (!paymentMethod) {
+      alert('Necessário escolher um método de pagamento')
+      return
+    }
 
-  const custOfDelivery = 3.5
-  const custOfDeliveryFormattedToBR = formatToBRCashString(custOfDelivery)
+    reset()
 
-  const sumTotalOfItensFormatted = formatToBRCashString(sumTotalOfItens)
-  const priceFinal = sumTotalOfItens + custOfDelivery
-  const priceFinalFormatted = formatToBRCashString(priceFinal)
+    navigate('/success-order', {
+      state: {
+        paymentMethod,
+        address: data,
+      },
+    })
+  }
+
+  // Altera o método de pagamento //
+  function handleSelectedPaymentMethod(method: PaymentMethod) {
+    setPaymentMethod(method)
+  }
 
   return (
     <Container>
-      {/* Dados do cliente */}
-      <UserInfo>
-        <h2>Complete seu Pedido</h2>
+      <FormProvider {...methods}>
+        <Form onSubmit={handleSubmit(handleCheckout)}>
+          <ClientInfoForm
+            paymentMethod={paymentMethod}
+            onSelectedPaymentMethod={handleSelectedPaymentMethod}
+          />
 
-        {/* Endereço do cliente */}
-        <div className="user-address">
-          <HeaderFormAddress>
-            <MapPinLine size={22} weight="regular" />
-            <div>
-              <p>Endereço de Entrega</p>
-              <span>Informe o endereço onde deseja receber seu pedido</span>
-            </div>
-          </HeaderFormAddress>
-
-          <FormAddress>
-            <InputDefault type="number" placeholder="CEP" gridArea="cep" />
-            <InputDefault type="text" placeholder="Rua" gridArea="street" />
-            <InputDefault
-              type="number"
-              placeholder="Número"
-              gridArea="numberHouse"
-            />
-            <InputDefault
-              type="text"
-              placeholder="Complemento"
-              gridArea="complement"
-              hasOptionalLabel
-            />
-            <InputDefault
-              type="text"
-              placeholder="Bairro"
-              gridArea="district"
-            />
-            <InputDefault type="text" placeholder="Cidade" gridArea="city" />
-            <InputDefault type="text" placeholder="UF" gridArea="uf" />
-          </FormAddress>
-        </div>
-
-        {/* Método de pagamento */}
-        <div className="user-payment">
-          <HeaderPayment>
-            <CurrencyDollar size={22} weight="regular" />
-
-            <div>
-              <p>Pagamento</p>
-              <span>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </span>
-            </div>
-          </HeaderPayment>
-
-          <PaymentMethodButtons>
-            <button className="selected">
-              <CreditCard size={16} />
-              CARTÃO DE CRÉDITO
-            </button>
-
-            <button>
-              <Bank size={16} />
-              CARTÃO DE DÉBITO
-            </button>
-
-            <button>
-              <Money size={16} />
-              DINHEIRO
-            </button>
-          </PaymentMethodButtons>
-        </div>
-      </UserInfo>
-
-      {/* Lista de produtos no carrinho */}
-      <CartStorage>
-        <h2>Cafés selecionados</h2>
-
-        <div className="purchase-details">
-          {cart.map((item) => (
-            <ProductsSelected
-              product={item.product}
-              countOfProduct={item.count}
-              key={item.product.id}
-            />
-          ))}
-
-          <div>
-            <span>Total de itens</span>{' '}
-            <span>R$ {sumTotalOfItensFormatted}</span>
-            <span>Entrega</span> <span>R$ {custOfDeliveryFormattedToBR}</span>
-            <span>
-              <strong>Total</strong>
-            </span>
-            <span>
-              <strong>R$ {priceFinalFormatted}</strong>
-            </span>
-          </div>
-
-          <button>Confirmar pedido</button>
-        </div>
-      </CartStorage>
+          <ShoppingCart />
+        </Form>
+      </FormProvider>
     </Container>
   )
 }

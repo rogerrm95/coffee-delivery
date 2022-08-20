@@ -11,12 +11,15 @@
     "lint-fix": "npx eslint src --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.7",
     "phosphor": "^0.7.1",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.2",
     "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "zod": "^3.18.0"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.1.3",
