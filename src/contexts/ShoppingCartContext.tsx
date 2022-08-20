@@ -24,6 +24,7 @@ interface ShoppingCartContextData {
   addProductToShopCart: (product: Product, count: number) => void
   updateCounOfProduct: (productID: number, count: number) => void
   deleteProductAtTheCart: (productID: number) => void
+  clearCart: () => void
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartContextData>(
@@ -87,6 +88,12 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     )
   }
 
+  // Função responsável por esvaziar o carrinho após uma compra //
+  function clearCart() {
+    setCart([])
+    localStorage.removeItem('@coffee-delivery:shop-cart')
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -94,6 +101,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         addProductToShopCart,
         updateCounOfProduct,
         deleteProductAtTheCart,
+        clearCart,
       }}
     >
       {children}
