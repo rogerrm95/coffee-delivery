@@ -1,21 +1,19 @@
 import styled from 'styled-components'
 
-export const Container = styled.ul`
-  li {
+export const Container = styled.li`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  position: relative;
+
+  .info {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 3rem;
+    gap: 1.25rem;
 
-    position: relative;
-
-    .info {
-      display: flex;
-      gap: 1.25rem;
-
-      img {
-        width: 4rem;
-        height: 4rem;
-      }
+    img {
+      width: 4rem;
+      height: 4rem;
     }
 
     .details {

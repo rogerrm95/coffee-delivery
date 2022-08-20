@@ -5,7 +5,11 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+// Hooks //
+import { useCart } from '../../hooks/useCart'
+// Components //
 import { InputDefault } from '../../components/Inputs/InputDefault/indext'
+import { ProductsSelected } from './components/ProductsSelected'
 // Styles //
 import {
   CartStorage,
@@ -16,11 +20,29 @@ import {
   HeaderPayment,
   PaymentMethodButtons,
 } from './styles'
-
-// import { coffeesList } from '../../utils/coffeeList'
-import { ProductsSelectedList } from './components/ProductsSelectedList'
+import { useEffect, useState } from 'react'
+import { formatToBRCashString } from '../../utils/formatCashString'
 
 export function Checkout() {
+  const { cart } = useCart()
+
+  const [sumTotalOfItens, setSumTotalOfItens] = useState(0)
+
+  useEffect(() => {
+    const total = cart.reduce((total, item) => {
+      return total + item.product.price * item.count
+    }, 0)
+
+    setSumTotalOfItens(total)
+  }, [cart])
+
+  const custOfDelivery = 3.5
+  const custOfDeliveryFormattedToBR = formatToBRCashString(custOfDelivery)
+
+  const sumTotalOfItensFormatted = formatToBRCashString(sumTotalOfItens)
+  const priceFinal = sumTotalOfItens + custOfDelivery
+  const priceFinalFormatted = formatToBRCashString(priceFinal)
+
   return (
     <Container>
       {/* Dados do cliente */}
@@ -98,16 +120,23 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
 
         <div className="purchase-details">
-          <ProductsSelectedList />
+          {cart.map((item) => (
+            <ProductsSelected
+              product={item.product}
+              countOfProduct={item.count}
+              key={item.product.id}
+            />
+          ))}
 
           <div>
-            <span>Total de itens</span> <span>R$ 29,70</span>
-            <span>Entrega</span> <span>R$ 3,50</span>
+            <span>Total de itens</span>{' '}
+            <span>R$ {sumTotalOfItensFormatted}</span>
+            <span>Entrega</span> <span>R$ {custOfDeliveryFormattedToBR}</span>
             <span>
               <strong>Total</strong>
             </span>
             <span>
-              <strong>R$ 33,20</strong>
+              <strong>R$ {priceFinalFormatted}</strong>
             </span>
           </div>
 

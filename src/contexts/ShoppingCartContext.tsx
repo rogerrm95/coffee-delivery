@@ -22,6 +22,8 @@ type FullCartList = {
 interface ShoppingCartContextData {
   cart: FullCartList[]
   addProductToShopCart: (product: Product, count: number) => void
+  updateCounOfProduct: (productID: number, count: number) => void
+  deleteProductAtTheCart: (productID: number) => void
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartContextData>(
@@ -39,6 +41,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     return cartJSON as FullCartList[]
   })
 
+  // Adiciona um produto ao carrinho de compras OU //
+  // Incrementa a quantidade do mesmo caso já tenha na lista //
   function addProductToShopCart(product: Product, count: number) {
     const hasProductIndex = cart.findIndex(
       (item) => item.product.id === product.id,
@@ -63,8 +67,35 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     }
   }
 
+  // Atualiza a quantidade de itens de um certo produto //
+  function updateCounOfProduct(productID: number, count: number) {
+    const updatedCartList = cart.map((item) => {
+      return productID === item.product.id ? { ...item, count } : item
+    })
+
+    setCart(updatedCartList)
+  }
+
+  // Exclui o produto do carrinho //
+  function deleteProductAtTheCart(productID: number) {
+    const newCartList = cart.filter((item) => item.product.id !== productID)
+
+    setCart(newCartList)
+    localStorage.setItem(
+      '@coffee-delivery:shop-cart',
+      JSON.stringify(newCartList),
+    )
+  }
+
   return (
-    <ShoppingCartContext.Provider value={{ cart, addProductToShopCart }}>
+    <ShoppingCartContext.Provider
+      value={{
+        cart,
+        addProductToShopCart,
+        updateCounOfProduct,
+        deleteProductAtTheCart,
+      }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   )

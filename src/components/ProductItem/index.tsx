@@ -31,7 +31,7 @@ export function ProductItem({ product }: ProductItemProps) {
   useEffect(() => {
     const newPrice = formatToBRCashString(product.price * count)
     setPriceFormatted(newPrice)
-  }, [count])
+  }, [product.price, count])
 
   const { addProductToShopCart } = useCart()
 
@@ -69,6 +69,17 @@ export function ProductItem({ product }: ProductItemProps) {
     setCount(1)
   }
 
+  // Atualiza o valor do input //
+  function handleChangeProductUnity(countOfProduct: number) {
+    const newCount = countOfProduct
+
+    if (newCount <= 0 || newCount >= 100) {
+      return
+    }
+
+    setCount(newCount)
+  }
+
   return (
     <ProductItemContainer>
       <img src={product.image} alt={product.name} />
@@ -94,7 +105,7 @@ export function ProductItem({ product }: ProductItemProps) {
         <div className="actions">
           <InputCount
             value={count}
-            onChange={(e) => setCount(Number(e.target.value))}
+            onChange={(e) => handleChangeProductUnity(Number(e.target.value))}
             onAddOneProductUnity={handleAddOneProductUnity}
             onRemoveProductUnity={handleRemoveOneProductUnity}
             min={1}
