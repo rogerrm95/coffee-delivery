@@ -18,6 +18,8 @@ import {
   PaymentMethodButtons,
   UserInfo,
 } from './styles'
+import { useFormContext } from 'react-hook-form'
+import { useState } from 'react'
 
 interface ClientInfoFormProps {
   paymentMethod: PaymentMethod | undefined
@@ -28,6 +30,27 @@ export function ClientInfoForm({
   paymentMethod,
   onSelectedPaymentMethod,
 }: ClientInfoFormProps) {
+  const { setValue } = useFormContext()
+  const [zipcode, setZipcode] = useState<string>('')
+
+  // Função responsável por recerber um CEP e realizar umas busca em uma API Externa //
+  // API de CEP's - ViaCEP //
+  async function handleLoadAddressAboutTheZipcode() {
+    const zipcodeFormatted = zipcode.replace(/[^\d]+/g, '')
+
+    const address = await fetch(
+      `http://viacep.com.br/ws/${zipcodeFormatted}/json/`,
+    ).then((res) => res.json())
+
+    if (address) {
+      setValue('street', address.logradouro)
+      setValue('district', address.bairro)
+      setValue('complement', address.complemento)
+      setValue('city', address.localidade)
+      setValue('uf', address.uf)
+    }
+  }
+
   return (
     <UserInfo>
       <h2>Complete seu Pedido</h2>
@@ -43,7 +66,14 @@ export function ClientInfoForm({
         </HeaderFormAddress>
 
         <FormAddress>
-          <InputDefault registerName="cep" placeholder="CEP" gridArea="cep" />
+          <InputDefault
+            placeholder="CEP"
+            gridArea="cep"
+            value={zipcode}
+            onChange={(e) => setZipcode(e.target.value)}
+            onBlur={() => handleLoadAddressAboutTheZipcode()}
+          />
+
           <InputDefault
             registerName="street"
             placeholder="Rua"

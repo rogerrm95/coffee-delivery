@@ -12,7 +12,6 @@ import { useCart } from '../../hooks/useCart'
 
 // Schema validation - ClientForm //
 const checkoutFormValidationSchema = zod.object({
-  cep: zod.string().max(8),
   street: zod.string(),
   numberHouse: zod.string(),
   complement: zod.string().optional(),
