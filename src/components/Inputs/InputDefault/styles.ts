@@ -20,6 +20,10 @@ export const InputContainer = styled.div`
     padding: 0.75rem;
 
     font-size: 0.875rem;
+
+    &::placeholder {
+      opacity: 0.25;
+    }
   }
 
   span {
