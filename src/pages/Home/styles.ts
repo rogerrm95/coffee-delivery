@@ -24,6 +24,7 @@ export const LandingContainer = styled.main`
     img {
       width: 476px;
       height: 360px;
+      animation: fadeIn 2s;
     }
   }
 
@@ -75,6 +76,16 @@ export const LandingContainer = styled.main`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         flex-wrap: wrap;
+      }
+    }
+
+    // Animações //
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
       }
     }
   }
