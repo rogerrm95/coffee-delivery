@@ -12,11 +12,11 @@ import { useCart } from '../../hooks/useCart'
 
 // Schema validation - ClientForm //
 const checkoutFormValidationSchema = zod.object({
-  street: zod.string(),
-  numberHouse: zod.string(),
+  street: zod.string().min(3),
+  numberHouse: zod.string().min(1),
   complement: zod.string().optional(),
   district: zod.string(),
-  city: zod.string(),
+  city: zod.string().min(3),
   uf: zod.string().min(2).max(2),
 })
 
@@ -31,7 +31,6 @@ export function Checkout() {
 
   const methods = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutFormValidationSchema),
-    mode: 'onSubmit',
   })
   const { handleSubmit, reset } = methods
 

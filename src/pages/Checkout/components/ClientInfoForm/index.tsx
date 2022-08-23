@@ -89,6 +89,7 @@ export function ClientInfoForm({
             registerName="complement"
             placeholder="Complemento"
             gridArea="complement"
+            hasOptionalLabel
           />
 
           <InputDefault
