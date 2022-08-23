@@ -1,5 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useCart } from '../../hooks/useCart'
 import { formatToBRCashString } from '../../utils/formatCashString'
 // Components //
@@ -40,6 +41,7 @@ export function ProductItem({ product }: ProductItemProps) {
     const newCount = count + 1
 
     if (newCount >= 100) {
+      toast.warn('Quantidade máxima: 99')
       return
     }
 
@@ -51,11 +53,14 @@ export function ProductItem({ product }: ProductItemProps) {
     const newCount = count - 1
 
     if (newCount <= 0) {
+      toast.warn('Quantidade mínima: 1')
       return
     }
     setCount(newCount)
   }
 
+  // Função responsável por repassar os dados do produto para a função //
+  // na qual irá adiciona-lo ao carrinho //
   function hanldeAddToShoppingCart() {
     const productItem = {
       id: product.id,

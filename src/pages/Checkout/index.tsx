@@ -9,6 +9,7 @@ import { ShoppingCart } from './components/ShoppingCart'
 // Styles //
 import { Container, Form } from './styles'
 import { useCart } from '../../hooks/useCart'
+import { toast } from 'react-toastify'
 
 // Schema validation - ClientForm //
 const checkoutFormValidationSchema = zod.object({
@@ -37,12 +38,12 @@ export function Checkout() {
   // Função responsável por realizar um pedido //
   function handleCheckout(data: CheckoutFormValues) {
     if (cart.length <= 0) {
-      alert('Necessário escolher algum produto')
+      toast.warn('Carrinho se encontra vazio =(')
       return
     }
 
     if (!paymentMethod) {
-      alert('Necessário escolher um método de pagamento')
+      toast.warn('Necessário escolher um método de pagamento')
       return
     }
 

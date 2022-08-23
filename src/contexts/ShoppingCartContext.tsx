@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from 'react'
+import { toast } from 'react-toastify'
 // hook //
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
@@ -54,9 +55,15 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
       setCart(newList)
       saveToLocalStorage(newList, '@coffee-delivery:shop-cart')
+      toast.success('Item adicionado ao carrinho')
     } else {
       const newList = cart.map((item) => {
         if (item.product.id === product.id) {
+          if (item.count + count > 99) {
+            toast.warn('Quantidade máxima: 99')
+            return item
+          }
+          toast.success('Item adicionado ao carrinho')
           return { ...item, count: count + item.count }
         } else {
           return item

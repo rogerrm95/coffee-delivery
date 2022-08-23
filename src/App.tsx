@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components'
 import { ToastContainer, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 // Routes //
 import { BrowserRouter } from 'react-router-dom'
 // Styles //
@@ -13,9 +14,10 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <ShoppingCartProvider>
+          <Router />
           <ToastContainer
             position="top-right"
-            autoClose={4000}
+            autoClose={1500}
             hideProgressBar
             closeOnClick
             pauseOnFocusLoss={false}
@@ -23,8 +25,8 @@ function App() {
             draggable={false}
             transition={Slide}
             limit={2}
+            toastStyle={{ zIndex: 9999 }}
           />
-          <Router />
           <GlobalStyles />
         </ShoppingCartProvider>
       </BrowserRouter>

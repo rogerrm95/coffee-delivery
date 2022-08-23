@@ -20,6 +20,7 @@ import {
 } from './styles'
 import { useFormContext } from 'react-hook-form'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface ClientInfoFormProps {
   paymentMethod: PaymentMethod | undefined
@@ -40,7 +41,13 @@ export function ClientInfoForm({
 
     const address = await fetch(
       `http://viacep.com.br/ws/${zipcodeFormatted}/json/`,
-    ).then((res) => res.json())
+    )
+      .then((res) => res.json())
+      .catch((_) => {
+        if (zipcodeFormatted.length >= 6) {
+          toast.error('Endereço não encontrado!')
+        }
+      })
 
     if (address) {
       setValue('street', address.logradouro)
