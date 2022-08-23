@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import { ToastContainer, Slide } from 'react-toastify'
 // Routes //
 import { BrowserRouter } from 'react-router-dom'
 // Styles //
@@ -12,6 +13,17 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <ShoppingCartProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar
+            closeOnClick
+            pauseOnFocusLoss={false}
+            pauseOnHover={false}
+            draggable={false}
+            transition={Slide}
+            limit={2}
+          />
           <Router />
           <GlobalStyles />
         </ShoppingCartProvider>
