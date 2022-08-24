@@ -1,3 +1,4 @@
+// Images //
 import AmericanExpressImage from './../assets/coffees/american-express.png'
 import TradicionalExpressImage from './../assets/coffees/tradicional-express.png'
 import ArabianCoffeeImage from './../assets/coffees/arabian-coffee.png'

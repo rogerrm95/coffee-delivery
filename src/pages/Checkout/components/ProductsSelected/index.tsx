@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Trash } from 'phosphor-react'
+// Utils //
 import { formatToBRCashString } from '../../../../utils/formatCashString'
+// Hook //
+import { useCart } from '../../../../hooks/useCart'
 // Components //
 import { InputCount } from '../../../../components/Inputs/InputCount'
 // Styles //
 import { Container } from './styles'
-import { useCart } from '../../../../hooks/useCart'
 
 type Product = {
   id: number
@@ -35,12 +37,13 @@ export function ProductsSelected({
     }
   })
 
+  // Calcula o valor total daquele item (preço unitário X Quantidade) //
   useEffect(() => {
     const total = formatToBRCashString(product.price * count)
     setTotalPrice(total)
   }, [product.price, count])
 
-  // Adiciona uma unidade do produto //
+  // Função responsável por adicionar +1 unidade do produto //
   function handleAddOneProductUnity() {
     const newCount = count + 1
 
@@ -52,7 +55,7 @@ export function ProductsSelected({
     updateCounOfProduct(product.id, newCount)
   }
 
-  // Remove uma unidade do produto //
+  // Função responsável por remover 1 unidade do produto //
   function handleRemoveOneProductUnity() {
     const newCount = count - 1
 
@@ -63,7 +66,7 @@ export function ProductsSelected({
     updateCounOfProduct(product.id, newCount)
   }
 
-  // Atualiza o valor do input //
+  // Função responsável por atualizar o valor do input //
   function handleChangeProductUnity(countOfProduct: number) {
     const newCount = countOfProduct
 
@@ -75,7 +78,7 @@ export function ProductsSelected({
     updateCounOfProduct(product.id, newCount)
   }
 
-  // Exclui o item da lista //
+  // Função responsável por excluir o item da lista //
   function handleDeleteProductAtTheCart(productID: number) {
     deleteProductAtTheCart(productID)
   }

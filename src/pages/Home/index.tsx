@@ -1,7 +1,10 @@
-import { coffeesList } from '../../utils/coffeeList'
 // Images //
+import { coffeesList } from '../../utils/coffeeList'
+// Utils //
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import HeroImage from '../../assets/hero-image.png'
+// Components //
+import { ProductItem } from '../../components/ProductItem'
 // Styles //
 import {
   BadgeCart,
@@ -11,13 +14,12 @@ import {
   LandingContainer,
   StoreContainer,
 } from './styles'
-import { ProductItem } from '../../components/ProductItem'
 
 export function Home() {
   return (
     <>
-      {/* Página Inicial */}
       <LandingContainer>
+        {/* Página Inicial */}
         <img
           src={HeroImage}
           alt="Imagem de Café no copo"

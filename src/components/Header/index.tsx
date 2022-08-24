@@ -3,7 +3,6 @@ import { useCart } from '../../hooks/useCart'
 // Icons & Images //
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import LogoCoffeeDelivery from '../../assets/logo.svg'
-
 // Styles //
 import { HeaderContainer, LocationBadge, CartButton } from './styles'
 

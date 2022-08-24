@@ -1,7 +1,9 @@
-import { ShoppingCart } from 'phosphor-react'
 import { useEffect, useState } from 'react'
+import { ShoppingCart } from 'phosphor-react'
 import { toast } from 'react-toastify'
+// Hook //
 import { useCart } from '../../hooks/useCart'
+// Utils //
 import { formatToBRCashString } from '../../utils/formatCashString'
 // Components //
 import { InputCount } from '../Inputs/InputCount'
@@ -28,7 +30,7 @@ export function ProductItem({ product }: ProductItemProps) {
     product.price,
   )
 
-  // Multiplica o valor conforme a quantidade aumenta //
+  // Calcula o novo valor conforme a quantidade do produto altera //
   useEffect(() => {
     const newPrice = formatToBRCashString(product.price * count)
     setPriceFormatted(newPrice)
@@ -36,7 +38,7 @@ export function ProductItem({ product }: ProductItemProps) {
 
   const { addProductToShopCart } = useCart()
 
-  // Adiciona uma unidade do produto //
+  // Função responsável por adicionar +1 unidade do produto //
   function handleAddOneProductUnity() {
     const newCount = count + 1
 
@@ -48,7 +50,7 @@ export function ProductItem({ product }: ProductItemProps) {
     setCount(newCount)
   }
 
-  // Remove uma unidade do produto //
+  // Função responsável por remover 1 unidade do produto //
   function handleRemoveOneProductUnity() {
     const newCount = count - 1
 
@@ -74,7 +76,7 @@ export function ProductItem({ product }: ProductItemProps) {
     setCount(1)
   }
 
-  // Atualiza o valor do input //
+  // Função responsável por atualizar o valor do input //
   function handleChangeProductUnity(countOfProduct: number) {
     const newCount = countOfProduct
 

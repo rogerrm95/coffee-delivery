@@ -22,42 +22,42 @@ export function ShoppingCart() {
   }, [cart])
 
   // Variáveis auxiliares //
+  // Cálculo dos preços finais + Taxa de entrega //
   const custOfDelivery = 3.5
   const custOfDeliveryFormattedToBR = formatToBRCashString(custOfDelivery)
 
   const sumTotalOfItensFormatted = formatToBRCashString(sumTotalOfItens)
+
   const priceFinal = sumTotalOfItens + custOfDelivery
   const priceFinalFormatted = formatToBRCashString(priceFinal)
+
   return (
-    <>
+    <Container>
       {/* Lista de produtos no carrinho */}
-      <Container>
-        <h2>Cafés selecionados</h2>
+      <h2>Cafés selecionados</h2>
 
-        <div className="purchase-details">
-          {cart.map((item) => (
-            <ProductsSelected
-              product={item.product}
-              countOfProduct={item.count}
-              key={item.product.id}
-            />
-          ))}
+      <div className="purchase-details">
+        {cart.map((item) => (
+          <ProductsSelected
+            product={item.product}
+            countOfProduct={item.count}
+            key={item.product.id}
+          />
+        ))}
 
-          <div>
-            <span>Total de itens</span>{' '}
-            <span>R$ {sumTotalOfItensFormatted}</span>
-            <span>Entrega</span> <span>R$ {custOfDeliveryFormattedToBR}</span>
-            <span>
-              <strong>Total</strong>
-            </span>
-            <span>
-              <strong>R$ {priceFinalFormatted}</strong>
-            </span>
-          </div>
-
-          <button type="submit">Confirmar pedido</button>
+        <div>
+          <span>Total de itens</span> <span>R$ {sumTotalOfItensFormatted}</span>
+          <span>Entrega</span> <span>R$ {custOfDeliveryFormattedToBR}</span>
+          <span>
+            <strong>Total</strong>
+          </span>
+          <span>
+            <strong>R$ {priceFinalFormatted}</strong>
+          </span>
         </div>
-      </Container>
-    </>
+
+        <button type="submit">Confirmar pedido</button>
+      </div>
+    </Container>
   )
 }

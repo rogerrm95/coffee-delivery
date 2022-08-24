@@ -1,6 +1,6 @@
+import { InputHTMLAttributes } from 'react'
 // Icons //
 import { Minus, Plus } from 'phosphor-react'
-import { InputHTMLAttributes } from 'react'
 // Styles //
 import { InputCountContainer } from './styles'
 

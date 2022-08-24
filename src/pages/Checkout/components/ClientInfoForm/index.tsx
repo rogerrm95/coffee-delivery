@@ -1,5 +1,6 @@
-// Types //
-import { PaymentMethod } from '../..'
+import { useFormContext } from 'react-hook-form'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 // Icons //
 import {
   Bank,
@@ -8,8 +9,10 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+// Types //
+import { PaymentMethod } from '../..'
 // Components //
-import { InputDefault } from '../../../../components/Inputs/InputDefault/indext'
+import { InputDefault } from '../../../../components/Inputs/InputDefault'
 // Styles //
 import {
   FormAddress,
@@ -18,9 +21,6 @@ import {
   PaymentMethodButtons,
   UserInfo,
 } from './styles'
-import { useFormContext } from 'react-hook-form'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
 
 interface ClientInfoFormProps {
   paymentMethod: PaymentMethod | undefined
@@ -73,6 +73,7 @@ export function ClientInfoForm({
         </HeaderFormAddress>
 
         <FormAddress>
+          {/* Controlled Input */}
           <InputDefault
             placeholder="CEP"
             gridArea="cep"

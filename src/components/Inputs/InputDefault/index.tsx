@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import { useFormContext } from 'react-hook-form'
+// Styles //
 import { InputContainer } from './styles'
 
 interface InputDefaultProps extends InputHTMLAttributes<HTMLInputElement> {

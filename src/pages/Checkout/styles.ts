@@ -4,7 +4,7 @@ export const Container = styled.main`
   width: 100%;
   height: 100%;
 `
-// Container Principal //
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

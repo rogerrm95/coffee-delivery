@@ -1,13 +1,13 @@
 import { ThemeProvider } from 'styled-components'
 import { ToastContainer, Slide } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ShoppingCartProvider } from './contexts/ShoppingCartContext'
 // Routes //
 import { BrowserRouter } from 'react-router-dom'
+import Router from './Router'
 // Styles //
 import { GlobalStyles } from './styles/global'
 import { defaultTheme } from './styles/themes/light'
-import Router from './Router'
-import { ShoppingCartProvider } from './contexts/ShoppingCartContext'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (

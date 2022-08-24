@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-// Landing Page //
+// LANDING PAGE //
 export const LandingContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -128,7 +128,7 @@ export const BadgeCoffee = styled(BadgeBase)`
     background-color: ${(props) => props.theme.colors.purple};
   }
 `
-// Store //
+// PRODUCTS //
 export const StoreContainer = styled.section`
   height: 100vh;
   width: 100%;

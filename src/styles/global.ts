@@ -36,7 +36,7 @@ export const GlobalStyles = createGlobalStyle`
         list-style: none ;
     }
 
-    // Remove arrow from input type number //
+    // Remove o icone (seta) do input tipo númerico //
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {

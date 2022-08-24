@@ -35,6 +35,7 @@ export const ShoppingCartContext = createContext<ShoppingCartContextData>(
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const { loadLocalStorage, saveToLocalStorage } = useLocalStorage()
 
+  // CARRINHO DE COMPRAS //
   const [cart, setCart] = useState(() => {
     const cartJSON = loadLocalStorage('@coffee-delivery:shop-cart')
 
@@ -43,7 +44,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     return cartJSON as FullCartList[]
   })
 
-  // Adiciona um produto ao carrinho de compras OU //
+  // Função responsável por adicionar um produto ao carrinho de compras OU //
   // Incrementa a quantidade do mesmo caso já tenha na lista //
   function addProductToShopCart(product: Product, count: number) {
     const hasProductIndex = cart.findIndex(
@@ -75,7 +76,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     }
   }
 
-  // Atualiza a quantidade de itens de um certo produto //
+  // Função responsável por atualizar a quantidade de itens de um certo produto //
   function updateCounOfProduct(productID: number, count: number) {
     const updatedCartList = cart.map((item) => {
       return productID === item.product.id ? { ...item, count } : item
@@ -84,7 +85,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCart(updatedCartList)
   }
 
-  // Exclui o produto do carrinho //
+  // Função responsável por excluir o produto do carrinho //
   function deleteProductAtTheCart(productID: number) {
     const newCartList = cart.filter((item) => item.product.id !== productID)
 

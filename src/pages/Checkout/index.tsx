@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
+// Hook //
+import { useCart } from '../../hooks/useCart'
+// Libs //
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
-import * as zod from 'zod'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import * as zod from 'zod'
 // Components //
 import { ClientInfoForm } from './components/ClientInfoForm'
 import { ShoppingCart } from './components/ShoppingCart'
 // Styles //
 import { Container, Form } from './styles'
-import { useCart } from '../../hooks/useCart'
-import { toast } from 'react-toastify'
 
 // Schema validation - ClientForm //
 const checkoutFormValidationSchema = zod.object({
