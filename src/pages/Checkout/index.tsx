@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import * as zod from 'zod'
@@ -14,7 +14,7 @@ import { toast } from 'react-toastify'
 // Schema validation - ClientForm //
 const checkoutFormValidationSchema = zod.object({
   street: zod.string().min(3),
-  numberHouse: zod.string().min(1),
+  numberHouse: zod.string().min(1, 'Informar o número da residência'),
   complement: zod.string().optional(),
   district: zod.string(),
   city: zod.string().min(3),
@@ -33,7 +33,18 @@ export function Checkout() {
   const methods = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutFormValidationSchema),
   })
-  const { handleSubmit, reset } = methods
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = methods
+
+  // Se houver algum erro no formulário, exibirá um erro //
+  useEffect(() => {
+    if (Object.keys(errors).length !== 0) {
+      toast.error('Preencher corretamente o formulário de endereço')
+    }
+  }, [errors])
 
   // Função responsável por realizar um pedido //
   function handleCheckout(data: CheckoutFormValues) {
