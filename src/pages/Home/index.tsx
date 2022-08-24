@@ -1,6 +1,6 @@
-// Images //
-import { coffeesList } from '../../utils/coffeeList'
 // Utils //
+import { coffeesList } from '../../utils/coffeeList'
+// Images //
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import HeroImage from '../../assets/hero-image.png'
 // Components //
