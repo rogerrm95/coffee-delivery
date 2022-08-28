@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import ScrollReveal from 'scrollreveal'
 import { ShoppingCart } from 'phosphor-react'
 import { toast } from 'react-toastify'
 // Hook //
@@ -29,6 +30,14 @@ export function ProductItem({ product }: ProductItemProps) {
   const [priceFormatted, setPriceFormatted] = useState<number | string>(
     product.price,
   )
+
+  const productRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    ScrollReveal().reveal(productRef.current, {
+      origin: 'bottom',
+    })
+  }, [])
 
   // Calcula o novo valor conforme a quantidade do produto altera //
   useEffect(() => {
@@ -88,7 +97,7 @@ export function ProductItem({ product }: ProductItemProps) {
   }
 
   return (
-    <ProductItemContainer>
+    <ProductItemContainer ref={productRef}>
       <img src={product.image} alt={product.name} />
 
       <div className="badge-features">

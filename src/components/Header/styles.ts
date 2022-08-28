@@ -43,12 +43,7 @@ export const LocationBadge = styled.span`
     color: ${(props) => props.theme.colors.purple};
   }
 `
-
-interface CartButtonProps {
-  numberToItensAtShopCart: number
-}
-
-export const CartButton = styled.button<CartButtonProps>`
+export const Button = styled.button`
   padding: 0.5rem;
   border-radius: 6px;
 
@@ -57,11 +52,25 @@ export const CartButton = styled.button<CartButtonProps>`
   justify-content: center;
   gap: 0.5rem;
 
-  color: ${(props) => props.theme.colors['yellow-dark']};
-  background: ${(props) => props.theme.colors['yellow-light']};
-
   cursor: pointer;
   transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`
+
+export const HomeButton = styled(Button)`
+  color: ${(props) => props.theme.colors['purple-dark']};
+  background: ${(props) => props.theme.colors['purple-light']};
+`
+interface CartButtonProps {
+  numberToItensAtShopCart: number
+}
+
+export const CartButton = styled(Button)<CartButtonProps>`
+  color: ${(props) => props.theme.colors['yellow-dark']};
+  background: ${(props) => props.theme.colors['yellow-light']};
 
   &::after {
     content: '${(props) => props.numberToItensAtShopCart}';
@@ -83,9 +92,5 @@ export const CartButton = styled.button<CartButtonProps>`
 
     font-weight: bold;
     font-size: 0.75rem;
-  }
-
-  &:hover {
-    opacity: 0.7;
   }
 `

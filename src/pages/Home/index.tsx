@@ -63,7 +63,7 @@ export function Home() {
       <StoreContainer>
         <h2>Nossos cafés</h2>
 
-        <ul>
+        <ul className="product-list">
           {coffeesList.map((coffee) => (
             <ProductItem key={coffee.id} product={coffee} />
           ))}
