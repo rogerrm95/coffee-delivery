@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../../../../hooks/useCart'
 // Utils //
 import { formatToBRCashString } from '../../../../utils/formatCashString'
+import { NoItens } from '../NoItens'
 // Components //
 import { ProductsSelected } from '../ProductsSelected'
 // Styles //
@@ -31,23 +32,30 @@ export function ShoppingCart() {
   const priceFinal = sumTotalOfItens + custOfDelivery
   const priceFinalFormatted = formatToBRCashString(priceFinal)
 
+  const hasProductInShoppingCart = cart.length !== 0
+
   return (
     <Container>
       {/* Lista de produtos no carrinho */}
       <h2>Cafés selecionados</h2>
 
       <div className="purchase-details">
-        {cart.map((item) => (
-          <ProductsSelected
-            product={item.product}
-            countOfProduct={item.count}
-            key={item.product.id}
-          />
-        ))}
+        {!hasProductInShoppingCart ? (
+          <NoItens />
+        ) : (
+          cart.map((item) => (
+            <ProductsSelected
+              product={item.product}
+              countOfProduct={item.count}
+              key={item.product.id}
+            />
+          ))
+        )}
 
-        <div>
+        <div className="prices">
           <span>Total de itens</span> <span>R$ {sumTotalOfItensFormatted}</span>
-          <span>Entrega</span> <span>R$ {custOfDeliveryFormattedToBR}</span>
+          <span>Taxa de entrega</span>{' '}
+          <span>R$ {custOfDeliveryFormattedToBR}</span>
           <span>
             <strong>Total</strong>
           </span>
@@ -56,7 +64,9 @@ export function ShoppingCart() {
           </span>
         </div>
 
-        <button type="submit">Confirmar pedido</button>
+        <button type="submit" disabled={!hasProductInShoppingCart}>
+          Confirmar pedido
+        </button>
       </div>
     </Container>
   )

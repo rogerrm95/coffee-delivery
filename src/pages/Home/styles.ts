@@ -153,4 +153,11 @@ export const StoreContainer = styled.section`
 
     padding-bottom: 2rem;
   }
+
+  // Desktop //
+  @media (min-width: 992px) {
+    ul {
+      justify-content: flex-start;
+    }
+  }
 `

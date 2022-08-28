@@ -22,7 +22,7 @@ export const Container = styled.div`
     background: ${(props) => props.theme.colors['brown-200']};
 
     // Preços //
-    > div {
+    .prices {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: repeat(3, 1fr);
@@ -67,6 +67,11 @@ export const Container = styled.div`
 
       &:hover {
         background: ${(props) => props.theme.colors['yellow-dark']};
+      }
+
+      &:disabled {
+        background: ${(props) => props.theme.colors['brown-400']};
+        cursor: not-allowed;
       }
     }
 

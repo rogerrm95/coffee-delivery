@@ -68,6 +68,7 @@ export function Checkout() {
         paymentMethod,
         address: data,
       },
+      replace: true,
     })
   }
 
