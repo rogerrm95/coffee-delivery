@@ -31,12 +31,14 @@ export function ProductItem({ product }: ProductItemProps) {
     product.price,
   )
 
-  const productRef = useRef<HTMLElement>(null)
+  const productRef = useRef<HTMLLIElement>(null)
 
   useEffect(() => {
-    ScrollReveal().reveal(productRef.current, {
-      origin: 'bottom',
-    })
+    if (productRef.current) {
+      ScrollReveal().reveal(productRef.current, {
+        origin: 'bottom',
+      })
+    }
   }, [])
 
   // Calcula o novo valor conforme a quantidade do produto altera //
