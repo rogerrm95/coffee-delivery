@@ -15,7 +15,10 @@ export const InputCountContainer = styled.div`
 
   button {
     cursor: pointer;
-    color: ${(props) => props.theme.colors.purple};
+    color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors.purple
+        : props.theme.colors['purple-dark']};
   }
 
   input {

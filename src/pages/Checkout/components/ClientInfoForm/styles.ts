@@ -112,13 +112,19 @@ const HeaderBase = styled.header`
 
 export const HeaderFormAddress = styled(HeaderBase)`
   svg {
-    color: ${(props) => props.theme.colors['yellow-dark']};
+    color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['yellow-dark']
+        : props.theme.colors['yellow-light']};
   }
 `
 
 export const HeaderPayment = styled(HeaderBase)`
   svg {
-    color: ${(props) => props.theme.colors.purple};
+    color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['purple-dark']
+        : props.theme.colors.purple};
   }
 `
 
@@ -138,7 +144,11 @@ export const PaymentMethodButtons = styled.div`
     justify-content: center;
 
     border-radius: 6px;
-    background: ${(props) => props.theme.colors['brown-400']};
+    background: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['brown-400']
+        : props.theme.colors['brown-300']};
+
     color: ${(props) => props.theme.colors['brown-700']};
     font-size: 0.75rem;
 
@@ -147,11 +157,17 @@ export const PaymentMethodButtons = styled.div`
 
     svg {
       margin-right: 0.5rem;
-      color: ${(props) => props.theme.colors.purple};
+      color: ${(props) =>
+        props.theme.title === 'light'
+          ? props.theme.colors['purple-dark']
+          : props.theme.colors.white};
     }
 
     &:not(.selected):hover {
-      background: ${(props) => props.theme.colors['brown-500']};
+      background: ${(props) =>
+        props.theme.title === 'light'
+          ? props.theme.colors['brown-500']
+          : props.theme.colors['brown-400']};
     }
   }
 

@@ -13,6 +13,14 @@ export const GlobalStyles = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
     }
 
+    input::placeholder {
+        color: ${(props) => props.theme.colors['brown-600']}
+    }
+
+    input {
+        color: ${(props) => props.theme.colors['brown-600']}
+    }
+
     body {
         background: ${(props) => props.theme.colors['brown-100']};
         color: ${(props) => props.theme.colors['brown-700']}

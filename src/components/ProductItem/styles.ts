@@ -81,7 +81,10 @@ export const ProductItemContainer = styled.li`
   }
 
   .buy-button {
-    background: ${(props) => props.theme.colors['purple-dark']};
+    background: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['purple-dark']
+        : props.theme.colors['purple-light']};
     color: ${(props) => props.theme.colors.white};
 
     padding: 0.5rem;

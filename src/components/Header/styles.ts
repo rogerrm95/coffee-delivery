@@ -36,10 +36,20 @@ export const LocationBadge = styled.span`
 
   font-size: 0.875rem;
   color: ${(props) => props.theme.colors['purple-dark']};
+
   background: ${(props) => props.theme.colors['purple-light']};
 
   svg {
-    color: ${(props) => props.theme.colors.purple};
+    color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors.purple
+        : props.theme.colors.white};
+  }
+
+  @media (max-width: 600px) {
+    span {
+      display: none;
+    }
   }
 `
 export const Button = styled.button`
@@ -83,8 +93,15 @@ export const CartButton = styled(Button)<CartButtonProps>`
     position: absolute;
     top: 24px;
     right: -8px;
-    background: ${(props) => props.theme.colors['yellow-dark']};
-    color: ${(props) => props.theme.colors.white};
+    background: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['yellow-dark']
+        : props.theme.colors.white};
+
+    color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors.white
+        : props.theme.colors['purple-light']};
 
     justify-content: center;
     align-items: center;

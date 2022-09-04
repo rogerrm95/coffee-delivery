@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 // Icons & Images //
-import { House, MapPin, ShoppingCart } from 'phosphor-react'
-import LogoCoffeeDelivery from '../../assets/logo.svg'
+import { House, MapPin, Moon, ShoppingCart } from 'phosphor-react'
+import DarkLogoCoffeeDelivery from '../../assets/logo.svg'
+import LightLogoCoffeeDelivery from '../../assets/logo-light.svg'
 // Styles //
 import {
   HeaderContainer,
@@ -10,25 +11,43 @@ import {
   CartButton,
   HomeButton,
 } from './styles'
+import { useSwitchTheme } from '../../hooks/useSwitchTheme'
 
 export function Header() {
   const navigate = useNavigate()
   const { cart } = useCart()
+  const { toggleTheme, themeSelected } = useSwitchTheme()
+
+  function handleToggleTheme() {
+    toggleTheme(themeSelected === 'light' ? 'dark' : 'light')
+  }
 
   return (
     <HeaderContainer>
-      <img src={LogoCoffeeDelivery} alt="Copo de café" />
+      <img
+        src={
+          themeSelected === 'light'
+            ? DarkLogoCoffeeDelivery
+            : LightLogoCoffeeDelivery
+        }
+        alt="Copo de café"
+      />
       <div>
-        <LocationBadge>
+        <LocationBadge title="Taboão da Serra, SP">
           <MapPin size={18} weight="fill" />
-          Taboão da Serra, SP
+          <span>Taboão da Serra, SP</span>
         </LocationBadge>
 
-        <HomeButton onClick={() => navigate('/')}>
+        <HomeButton onClick={handleToggleTheme} title="Trocar tema">
+          <Moon size={18} weight="bold" />
+        </HomeButton>
+
+        <HomeButton onClick={() => navigate('/')} title="Home">
           <House size={18} weight="bold" />
         </HomeButton>
 
         <CartButton
+          title="Carrinho"
           onClick={() => navigate('/checkout')}
           numberToItensAtShopCart={cart.length}
         >

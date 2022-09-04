@@ -66,7 +66,10 @@ export const Container = styled.div`
       transition: background-color 0.3s;
 
       &:hover {
-        background: ${(props) => props.theme.colors['yellow-dark']};
+        background: ${(props) =>
+          props.theme.title === 'light'
+            ? props.theme.colors['yellow-dark']
+            : props.theme.colors['yellow-light']};
       }
 
       &:disabled {

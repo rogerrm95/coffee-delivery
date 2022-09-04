@@ -13,12 +13,12 @@ export const dark = {
     'brown-200': '#403937',
     'brown-100': '#272221',
 
-    'yellow-light': '#F1E9C9',
+    'yellow-light': '#C47F17',
     yellow: '#DBAC2C',
-    'yellow-dark': '#C47F17',
+    'yellow-dark': '#F1E9C9',
 
-    'purple-light': '#EBE5F9',
+    'purple-light': '#4B2995',
     purple: '#8047F8',
-    'purple-dark': '#4B2995',
+    'purple-dark': '#EBE5F9',
   },
 }

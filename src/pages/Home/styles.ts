@@ -110,12 +110,18 @@ const BadgeBase = styled.span`
 `
 export const BadgeCart = styled(BadgeBase)`
   svg {
-    background-color: ${(props) => props.theme.colors['yellow-dark']};
+    background-color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['yellow-dark']
+        : props.theme.colors['yellow-light']};
   }
 `
 export const BadgePackage = styled(BadgeBase)`
   svg {
-    background-color: ${(props) => props.theme.colors['brown-800']};
+    background-color: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['purple-dark']
+        : props.theme.colors['purple-light']};
   }
 `
 export const BadgeTimer = styled(BadgeBase)`

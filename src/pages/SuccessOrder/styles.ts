@@ -110,6 +110,9 @@ export const BadgeTime = styled(BadgeBase)`
 // Badges - Método de Pagamento //
 export const BadgePayment = styled(BadgeBase)`
   svg {
-    background: ${(props) => props.theme.colors['yellow-dark']};
+    background: ${(props) =>
+      props.theme.title === 'light'
+        ? props.theme.colors['yellow-dark']
+        : props.theme.colors['yellow-light']};
   }
 `

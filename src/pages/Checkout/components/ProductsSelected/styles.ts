@@ -38,14 +38,18 @@ export const Container = styled.li`
       border-radius: 6px;
 
       background: ${(props) => props.theme.colors['brown-300']};
-      color: ${(props) => props.theme.colors.purple};
+
+      color: ${(props) =>
+        props.theme.title === 'light'
+          ? props.theme.colors.purple
+          : props.theme.colors['purple-dark']};
 
       text-transform: uppercase;
       cursor: pointer;
       transition: background-color 0.3s;
 
       &:hover {
-        background: ${(props) => props.theme.colors['brown-500']};
+        background: ${(props) => props.theme.colors['brown-400']};
       }
     }
 
