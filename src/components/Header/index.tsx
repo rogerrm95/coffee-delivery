@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
+import { useSwitchTheme } from '../../hooks/useSwitchTheme'
 // Icons & Images //
-import { House, MapPin, Moon, ShoppingCart } from 'phosphor-react'
+import { House, MapPin, Moon, ShoppingCart, Sun } from 'phosphor-react'
 import DarkLogoCoffeeDelivery from '../../assets/logo.svg'
 import LightLogoCoffeeDelivery from '../../assets/logo-light.svg'
 // Styles //
@@ -11,7 +12,6 @@ import {
   CartButton,
   HomeButton,
 } from './styles'
-import { useSwitchTheme } from '../../hooks/useSwitchTheme'
 
 export function Header() {
   const navigate = useNavigate()
@@ -39,7 +39,11 @@ export function Header() {
         </LocationBadge>
 
         <HomeButton onClick={handleToggleTheme} title="Trocar tema">
-          <Moon size={18} weight="bold" />
+          {themeSelected === 'light' ? (
+            <Moon size={18} weight="bold" />
+          ) : (
+            <Sun size={18} weight="bold" />
+          )}
         </HomeButton>
 
         <HomeButton onClick={() => navigate('/')} title="Home">

@@ -120,8 +120,8 @@ export const BadgePackage = styled(BadgeBase)`
   svg {
     background-color: ${(props) =>
       props.theme.title === 'light'
-        ? props.theme.colors['purple-dark']
-        : props.theme.colors['purple-light']};
+        ? props.theme.colors['brown-700']
+        : props.theme.colors['brown-300']};
   }
 `
 export const BadgeTimer = styled(BadgeBase)`
