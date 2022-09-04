@@ -1,4 +1,4 @@
-export const defaultTheme = {
+export const light = {
   title: 'light',
   colors: {
     white: '#FFF',
